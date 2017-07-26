@@ -6,21 +6,18 @@
 //  Copyright © 2017 Livleen Rai. All rights reserved.
 //
 
-#import "AdditionQuestion.h"
+#import "Question.h"
 
-@implementation AdditionQuestion
+@implementation Question
 
 - (instancetype)init {
     if(self = [super init]) {
         
         _startTime = [NSDate date];
         
-        NSInteger firstNum = 10 + arc4random_uniform(101) % (100 - 10);
-        NSInteger secondNum = 10 + arc4random_uniform(101) % (100 - 10);
+        _leftValue = 10 + arc4random_uniform(101) % (100 - 10);
+        _rightValue = 10 + arc4random_uniform(101) % (100 - 10);
         
-        _question = [NSString stringWithFormat:@"%ld + %ld?", (long)firstNum, (long)secondNum];
-        
-        _answer = firstNum + secondNum;
     }
     
     return self;
@@ -39,6 +36,10 @@
     NSTimeInterval answerTime = [_endTime timeIntervalSinceDate:_startTime];
     
     return answerTime;
+    
+}
+
+-(void)generateQuestion {
     
 }
 @end

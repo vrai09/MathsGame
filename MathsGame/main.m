@@ -8,25 +8,26 @@
 
 #import <Foundation/Foundation.h>
 #import "InputHandler.h"
-#import "AdditionQuestion.h"
 #import "ScoreKeeper.h"
 #import "QuestionManager.h"
+#import "QuestionFactory.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
         ScoreKeeper *keepScore = [[ScoreKeeper alloc]init];
         QuestionManager *questionManager = [[QuestionManager alloc]init];
+        InputHandler *handleInput = [[InputHandler alloc]init];
+        QuestionFactory *questionFactory = [[QuestionFactory alloc]init];
 
         
         while(TRUE) {
             
-            AdditionQuestion *additionQuestion = [[AdditionQuestion alloc]init];
-            [questionManager.questions addObject:additionQuestion];
+            Question *newQuestion = [questionFactory generateRandomQuestion];
+            [questionManager.questions addObject:newQuestion];
             
-            InputHandler *handleInput = [[InputHandler alloc]init];
     
-            NSLog(@"%@", additionQuestion.question);
+            NSLog(@"%@", newQuestion.question);
             
             NSString *userInput = [handleInput getUserInput];
             int userAnswer = [userInput intValue];
@@ -37,7 +38,7 @@ int main(int argc, const char * argv[]) {
             }
             
             
-            if(userAnswer == additionQuestion.answer) {
+            if(userAnswer == newQuestion.answer) {
                 keepScore.right += 1;
                 NSLog(@"Right!");
                 NSLog(@"%@",[keepScore scoreLog]);
@@ -47,6 +48,7 @@ int main(int argc, const char * argv[]) {
                 NSLog(@"%@",[keepScore scoreLog]);
             }
             
+            NSLog(@"%@", [questionManager calculateTiming]);
             
         }
     }

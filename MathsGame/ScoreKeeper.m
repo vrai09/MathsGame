@@ -12,7 +12,10 @@
 
 - (NSString *)scoreLog {
     
-    NSString *scoreLog = [NSString stringWithFormat:@"score: %d right, %d wrong", _right, _wrong];
+    double total = _right + _wrong;
+    double percentage = _right / total * 100.0f;
+    
+    NSString *scoreLog = [NSString stringWithFormat:@"score: %d right, %d wrong ---- %f%%", _right, _wrong, percentage];
     
     return scoreLog;
 }

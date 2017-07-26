@@ -7,7 +7,7 @@
 //
 
 #import "QuestionManager.h"
-#import "AdditionQuestion.h"
+#import "QuestionFactory.h"
 
 @implementation QuestionManager
 
@@ -31,13 +31,14 @@
     NSTimeInterval totalTime = 0.0;
     NSTimeInterval averageTime = 0.0;
     
-    for(AdditionQuestion *question in _questions) {
+    for(QuestionFactory *question in _questions) {
         totalTime += question.answerTime;
-        averageTime = (_questions.count / question.answerTime);
+        averageTime = (totalTime / _questions.count);
     }
     
     NSString *timingOutput = [NSString stringWithFormat:@"total time: %0.2f, average time: %0.2f", totalTime, averageTime];
     
     return timingOutput;
+    
 }
 @end

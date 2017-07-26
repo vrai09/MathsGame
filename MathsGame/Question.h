@@ -9,10 +9,12 @@
 #import <Foundation/Foundation.h>
 
 
-@interface AdditionQuestion : NSObject
+@interface Question : NSObject
 
 @property NSString *question;
 @property (nonatomic, assign)NSInteger answer;
+@property int leftValue;
+@property int rightValue;
 @property NSDate *startTime;
 @property NSDate *endTime;
 
@@ -21,5 +23,7 @@
 - (NSInteger)answer;
 
 - (NSTimeInterval)answerTime;
+
+- (void)generateQuestion;
 
 @end
