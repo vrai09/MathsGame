@@ -10,16 +10,20 @@
 #import "InputHandler.h"
 #import "AdditionQuestion.h"
 #import "ScoreKeeper.h"
+#import "QuestionManager.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
         ScoreKeeper *keepScore = [[ScoreKeeper alloc]init];
+        QuestionManager *questionManager = [[QuestionManager alloc]init];
 
         
         while(TRUE) {
             
             AdditionQuestion *additionQuestion = [[AdditionQuestion alloc]init];
+            [questionManager.questions addObject:additionQuestion];
+            
             InputHandler *handleInput = [[InputHandler alloc]init];
     
             NSLog(@"%@", additionQuestion.question);
